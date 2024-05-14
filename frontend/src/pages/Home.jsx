@@ -12,7 +12,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/contacts')
+            .get('https://contactlist-1-orkk.onrender.com/contacts')
             .then((response) => {
               setContacts(response.data.data);
               setLoading(false);

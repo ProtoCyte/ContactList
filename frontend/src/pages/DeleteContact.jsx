@@ -11,7 +11,7 @@ const DeleteContact = () => {
   const handleDeleteContact = () => {
     setLoading(true);
     axios
-    .delete(`http://localhost:5555/contacts/${id}`)
+    .delete(`https://contactlist-1-orkk.onrender.com/contacts/${id}`)
     .then(() => {
       setLoading(false);
       navigate('/');

@@ -49,7 +49,7 @@ const EditContact = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5555/contacts/${id}`, data)
+      .put(`https://contactlist-1-orkk.onrender.com/contacts/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');

@@ -26,7 +26,7 @@ const UploadContact = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/contacts', data)
+      .post('https://contactlist-1-orkk.onrender.com/contacts', data)
       .then(() => {
         setLoading(false);
         navigate('/');
