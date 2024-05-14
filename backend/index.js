@@ -5,7 +5,11 @@ import { Contact } from "./models/contactModel.js";
 import contactsRoute from './routes/contactsRoute.js';
 import cors from 'cors';
 
+const express = require('express')
+const cors = require('cors')
+
 const app = express();
+
 
 app.use(express.json())
 
