@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // Route for Save a new Contact
-router.post('/contacts', async (request, response) => {
+router.post('/', async (request, response) => {
     try {
         if (!request.body.name) {
             return response.status(400).send({
@@ -26,7 +26,7 @@ router.post('/contacts', async (request, response) => {
 });
 
 // Get all contacts from DB
-router.get('/contacts', async (request, response) => {
+router.get('/', async (request, response) => {
     try {
         const contacts = await Contact.find({});
 
@@ -41,7 +41,7 @@ router.get('/contacts', async (request, response) => {
 });
 
 // Get single contact from DB
-router.get('/contacts/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
         const { id } = request.params;
         const contact = await Contact.findById(id);
@@ -58,7 +58,7 @@ router.get('/contacts/:id', async (request, response) => {
 });
 
 // Update a Contact
-router.put('/contacts/:id', async (request, response) => {
+router.put('/:id', async (request, response) => {
     try {
         const { id } = request.params;
 
@@ -76,7 +76,7 @@ router.put('/contacts/:id', async (request, response) => {
 });
 
 // Delete a Contact
-router.delete('/contacts/:id', async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
         const { id } = request.params;
 
