@@ -18,7 +18,7 @@ const EditContact = () => {
   
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/contacts/${id}`)
+    axios.get(`https://contactlist-1-orkk.onrender.com/contacts/${id}`)
     .then((response) => {
       setName(response.data.name);
       setOrganization(response.data.organization);
