@@ -5,6 +5,8 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const EditContact = () => {
+  // const urltouse = 'http://localhost:5555/contacts'
+  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [name, setName] = useState('');
   const [organization, setOrganization] = useState('');
   const [title, setTitle] = useState('')
@@ -18,7 +20,7 @@ const EditContact = () => {
   
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://contactlist-1-orkk.onrender.com/contacts/${id}`)
+    axios.get(urltouse + '/' + `${id}`)
     .then((response) => {
       setName(response.data.name);
       setOrganization(response.data.organization);

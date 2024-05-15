@@ -5,6 +5,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const CreateContact = () => {
+  // const urltouse = 'http://localhost:5555/contacts'
+  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [name, setName] = useState('');
   const [organization, setOrganization] = useState('');
   const [title, setTitle] = useState('')
@@ -26,7 +28,7 @@ const CreateContact = () => {
     };
     setLoading(true);
     axios
-      .post('https://contactlist-1-orkk.onrender.com/contacts', data)
+      .post(urltouse, data)
       .then(() => {
         setLoading(false);
         navigate('/');

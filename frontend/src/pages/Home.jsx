@@ -7,12 +7,14 @@ import { BsInfo, BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 
 const Home = () => {
+    // const urltouse = 'http://localhost:5555/contacts'
+    const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
     const [contacts, setContacts] = useState([])
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true);
         axios
-            .get('https://contactlist-1-orkk.onrender.com/contacts')
+            .get(urltouse)
             .then((response) => {
               setContacts(response.data.data);
               setLoading(false);
