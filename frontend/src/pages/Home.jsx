@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
-import { AiOutlineEdit } from 'react-icons/ai';
+import { AiOutlineDownload, AiOutlineEdit } from 'react-icons/ai';
 import { BsInfo, BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
+import vCardJS from 'vcards-js'
 
 const Home = () => {
-    // const urltouse = 'http://localhost:5555/contacts'
-    const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+    const urltouse = 'http://localhost:5555/contacts'
+    // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
     const [contacts, setContacts] = useState([])
     const [loading, setLoading] = useState(false);
     useEffect(() => {
@@ -24,6 +25,31 @@ const Home = () => {
               setLoading(false);
             })
     }, []);
+
+    const handleDownload = (contact) => {
+      const vCard = vCardJS()
+      vCard.firstName = contact.firstName
+      vCard.lastName = contact.lastName
+      vCard.organization = contact.organization
+      vCard.title = contact.title
+      vCard.workPhone = contact.phoneNumber
+      vCard.address = contact.address
+      vCard.email = contact.email
+
+      const vCardString = vCard.getFormattedString()
+
+    const blob = new Blob([vCardString]);
+    const downloadUrl = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.setAttribute('download', `${contact.firstName.replace(/\s+/g, '_')}_Contact_Info.vcf`);
+
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+    }
+    
   return (
     <div className='p-4'>
       <div className='flex justify-between items-center'>
@@ -58,7 +84,7 @@ const Home = () => {
             {contacts.map((contact) => (
               <tr key={contact._id} className='h-8'>
                 <td className='border border-slate-700 rounded-md text-center'>
-                  {contact.name}
+                  {contact.firstName} {contact.lastName}
                 </td>
                 <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
                   {contact.organization}
@@ -88,6 +114,10 @@ const Home = () => {
                     <MdOutlineDelete className='text-2xl text-green-800'>
                     </MdOutlineDelete>
                   </Link>
+                  <button onClick={() => handleDownload(contact)}>
+                    <AiOutlineDownload className='text-2xl text-green-800 flex-start'>
+                    </AiOutlineDownload>
+                  </button>
                 </td>
               </tr>
             ))}

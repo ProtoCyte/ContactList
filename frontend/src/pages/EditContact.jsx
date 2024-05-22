@@ -5,9 +5,10 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const EditContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
-  const [name, setName] = useState('');
+  const urltouse = 'http://localhost:5555/contacts'
+  // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [organization, setOrganization] = useState('');
   const [title, setTitle] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -22,7 +23,8 @@ const EditContact = () => {
     setLoading(true);
     axios.get(urltouse + '/' + `${id}`)
     .then((response) => {
-      setName(response.data.name);
+      setFirstName(response.data.firstName);
+      setLastName(response.data.lastName);
       setOrganization(response.data.organization);
       setTitle(response.data.title);
       setPhoneNumber(response.data.phoneNumber)
@@ -41,7 +43,8 @@ const EditContact = () => {
   
   const handleEditContact = () => {
     const data = {
-      name,
+      firstName,
+      lastName,
       organization,
       title,
       phoneNumber,
@@ -49,9 +52,10 @@ const EditContact = () => {
       email,
       notes
     };
+    console.log(data)
     setLoading(true);
     axios
-      .put(`https://contactlist-1-orkk.onrender.com/contacts/${id}`, data)
+      .put(urltouse + '/' + `${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');
@@ -71,11 +75,21 @@ const EditContact = () => {
       {loading ? <Spinner></Spinner> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Name</label>
+          <label className='text-xl mr-4 text-gray-500'>First Name</label>
           <input
             type='text'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2 w-full'>
+
+            </input>
+        </div>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Last Name</label>
+          <input
+            type='text'
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'>
 
             </input>

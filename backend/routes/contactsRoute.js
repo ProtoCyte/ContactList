@@ -8,7 +8,7 @@ const router = express.Router();
 // Route for Save a new Contact
 router.post('/', async (request, response) => {
     try {
-        if (!request.body.name) {
+        if (!request.body.firstName || !request.body.lastName) {
             return response.status(400).send({
                 message: 'Please include a name'
             });

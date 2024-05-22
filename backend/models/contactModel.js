@@ -2,9 +2,12 @@ import mongoose from "mongoose";
 
 const contactSchema = mongoose.Schema(
     {
-        name: {
+        firstName: {
             type: String,
             required: true
+        },
+        lastName: {
+            type: String
         },
         organization: {
             type: String,
@@ -30,6 +33,9 @@ const contactSchema = mongoose.Schema(
             type: String,
             default: "N/A"
         }
+    }, 
+    {
+        timestamps: true
     }
 )
 

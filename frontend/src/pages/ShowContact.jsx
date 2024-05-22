@@ -5,8 +5,8 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
 const ShowContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const urltouse = 'http://localhost:5555/contacts'
+  // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [contact, setContacts] = useState({});
   const [loading, setLoading] = useState(false);
   const {id} = useParams();
@@ -36,7 +36,7 @@ const ShowContact = () => {
         <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-4'>
           <div className='my-4'>
             <span className='text-xl font-bold mr-4 text-gray-500'>Name:</span>
-            <span className='text-xl mr-4 text-black'>{contact.name}</span>
+            <span className='text-xl mr-4 text-black'>{contact.firstName} {contact.lastName}</span>
           </div>
           <div className='my-4'>
             <span className='text-xl font-bold mr-4 text-gray-500'>Organization:</span>

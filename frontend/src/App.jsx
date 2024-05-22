@@ -11,6 +11,7 @@ import UploadContact from './pages/UploadContact';
 const App = () => {
   return (
     <Routes>
+      {/* First Line Controls the home page  */}
       <Route path='/' element ={<Home></Home>} />
       <Route path='/contacts/create' element ={<CreateContact></CreateContact>} />
       <Route path='/contacts/details/:id' element ={<ShowContact></ShowContact>} />

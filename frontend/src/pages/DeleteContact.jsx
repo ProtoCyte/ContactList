@@ -5,8 +5,8 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const DeleteContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const urltouse = 'http://localhost:5555/contacts'
+  // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
