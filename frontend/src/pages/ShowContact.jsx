@@ -5,8 +5,8 @@ import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
 
 const ShowContact = () => {
-  const urltouse = 'http://localhost:5555/contacts'
-  // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  // const urltouse = 'http://localhost:5555/contacts'
+  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [contact, setContacts] = useState({});
   const [loading, setLoading] = useState(false);
   const {id} = useParams();

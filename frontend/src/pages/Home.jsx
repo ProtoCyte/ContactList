@@ -8,8 +8,8 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 import vCardJS from 'vcards-js'
 
 const Home = () => {
-    const urltouse = 'http://localhost:5555/contacts'
-    // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+    // const urltouse = 'http://localhost:5555/contacts'
+    const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
     const [contacts, setContacts] = useState([])
     const [loading, setLoading] = useState(false);
     useEffect(() => {

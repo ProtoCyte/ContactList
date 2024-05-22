@@ -5,8 +5,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const CreateContact = () => {
-  const urltouse = 'http://localhost:5555/contacts'
-  // const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  // const urltouse = 'http://localhost:5555/contacts'
+  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [organization, setOrganization] = useState('');

@@ -93,4 +93,16 @@ router.delete('/:id', async (request, response) => {
     }
 });
 
+// Delete all contacts
+router.delete('/', async (request, response) => {
+    try {
+        const result = await Contact.deleteMany({});
+
+        return response.status(200).send({ message: "All contacts deleted successfully", deletedCount: result.deletedCount });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+});
+
 export default router;
