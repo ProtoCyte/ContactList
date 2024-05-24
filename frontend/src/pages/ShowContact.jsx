@@ -60,7 +60,7 @@ const ShowContact = () => {
           </div>
           <div className='my-4'>
             <span className='text-xl font-bold mr-4 text-gray-500'>Notes:</span>
-            <span className='text-xl mr-4 text-black'>{contact.notes}</span>
+            <span className='text-xl mr-4 text-black'>{contact.note}</span>
           </div>
         </div>
       )}

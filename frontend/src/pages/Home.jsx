@@ -35,6 +35,7 @@ const Home = () => {
       vCard.workPhone = contact.phoneNumber
       vCard.address = contact.address
       vCard.email = contact.email
+      vCard.note = contact.note
 
       const vCardString = vCard.getFormattedString()
 

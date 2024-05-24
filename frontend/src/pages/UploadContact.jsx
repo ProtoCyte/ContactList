@@ -27,7 +27,7 @@ const UploadContact = () => {
         phoneNumber: card.get('tel')?.valueOf() || '',
         address: card.get('adr')?.valueOf() || '',
         email: card.get('email')?.valueOf() || '',
-        notes: card.get('note')?.valueOf() || ''
+        note: card.get('note')?.valueOf() || ''
       }));
       console.log(contacts)
       handleUploadedContacts(contacts);

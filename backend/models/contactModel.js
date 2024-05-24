@@ -29,7 +29,7 @@ const contactSchema = mongoose.Schema(
             type: String,
             default: "N/A"
         },
-        notes: {
+        note: {
             type: String,
             default: "N/A"
         }
