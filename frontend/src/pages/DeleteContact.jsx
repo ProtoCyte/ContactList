@@ -3,17 +3,17 @@ import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import Constants from '../components/Constants'
 
 const DeleteContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const deployedurl = Constants.urltouse
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const {id} = useParams();
   const handleDeleteContact = () => {
     setLoading(true);
     axios
-    .delete(urltouse + '/' + `${id}`)
+    .delete(deployedurl + '/' + `${id}`)
     .then(() => {
       setLoading(false);
       navigate('/');

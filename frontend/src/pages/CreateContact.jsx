@@ -3,10 +3,10 @@ import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Constants from '../components/Constants'
 
 const CreateContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const deployedurl = Constants.urltouse
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [organization, setOrganization] = useState('');
@@ -30,7 +30,7 @@ const CreateContact = () => {
     };
     setLoading(true);
     axios
-      .post(urltouse, data)
+      .post(deployedurl, data)
       .then(() => {
         setLoading(false);
         navigate('/');

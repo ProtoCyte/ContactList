@@ -3,10 +3,10 @@ import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import Constants from '../components/Constants'
 
 const EditContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const deployedurl = Constants.urltouse
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [organization, setOrganization] = useState('');
@@ -21,7 +21,7 @@ const EditContact = () => {
   
   useEffect(() => {
     setLoading(true);
-    axios.get(urltouse + '/' + `${id}`)
+    axios.get(deployedurl + '/' + `${id}`)
     .then((response) => {
       setFirstName(response.data.firstName);
       setLastName(response.data.lastName);
@@ -55,7 +55,7 @@ const EditContact = () => {
     console.log(data)
     setLoading(true);
     axios
-      .put(urltouse + '/' + `${id}`, data)
+      .put(deployedurl + '/' + `${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');

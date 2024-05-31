@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 import { AiOutlineDownload, AiOutlineEdit } from 'react-icons/ai';
 import { BsInfo, BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-import vCardJS from 'vcards-js'
+import {handleDownload} from '../utils/handleDownloads';
+import Logo from '../components/Logo';
+import Constants from '../components/Constants';
 
 const Home = () => {
-    // const urltouse = 'http://localhost:5555/contacts'
-    const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+    const deployedurl = Constants.urltouse
     const [contacts, setContacts] = useState([])
     const [loading, setLoading] = useState(false);
+    const [sortConfig, setSortConfig] = useState
     useEffect(() => {
         setLoading(true);
         axios
-            .get(urltouse)
+            .get(deployedurl)
             .then((response) => {
               setContacts(response.data.data);
               setLoading(false);
@@ -26,35 +28,14 @@ const Home = () => {
             })
     }, []);
 
-    const handleDownload = (contact) => {
-      const vCard = vCardJS()
-      vCard.firstName = contact.firstName
-      vCard.lastName = contact.lastName
-      vCard.organization = contact.organization
-      vCard.title = contact.title
-      vCard.workPhone = contact.phoneNumber
-      vCard.address = contact.address
-      vCard.email = contact.email
-      vCard.note = contact.note
 
-      const vCardString = vCard.getFormattedString()
-
-    const blob = new Blob([vCardString]);
-    const downloadUrl = window.URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = downloadUrl;
-    link.setAttribute('download', `${contact.firstName.replace(/\s+/g, '_')}_Contact_Info.vcf`);
-
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode.removeChild(link);
-    }
-    
   return (
     <div className='p-4'>
       <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>Contacts List</h1>
+        <h1 className='text-3xl flex'>
+          <Logo ></Logo>
+          <span className="relative top-4">Contact List</span>
+        </h1>
         <Link to='/contacts/create'>
           <button className='text-sky-800 text-4xl p-2' style={{ fontSize: '24px', border: 'solid', background: 'none', cursor: 'pointer' }}>
             Add a Contact
@@ -72,19 +53,19 @@ const Home = () => {
         <table className='w-full border-separate'>
           <thead>
             <tr>
-              <th className='border border-slate-600 rounded-md'>Name</th>
-              <th className='border border-slate-600 rounded-md max-md:hidden'>Organization</th>
-              <th className='border border-slate-600 rounded-md max-md:hidden'>Title</th>
-              <th className='border border-slate-600 rounded-md'>Phone Number</th>
-              <th className='border border-slate-600 rounded-md'>Address</th>
-              <th className='border border-slate-600 rounded-md'>Email</th>
+              <th className='border border-slate-600 rounded-md' onClick={() => handleSort('name')}>Name</th>
+              <th className='border border-slate-600 rounded-md max-md:hidden' onClick={() => handleSort('organization')}>Organization</th>
+              <th className='border border-slate-600 rounded-md max-md:hidden' onClick={() => handleSort('title')}>Title</th>
+              <th className='border border-slate-600 rounded-md' onClick={() => handleSort('phoneNumber')}>Phone Number</th>
+              <th className='border border-slate-600 rounded-md' onClick={() => handleSort('address')}>Address</th>
+              <th className='border border-slate-600 rounded-md' onClick={() => handleSort('email')}>Email</th>
             </tr>
           </thead>
 
           <tbody>
             {contacts.map((contact) => (
               <tr key={contact._id} className='h-8'>
-                <td className='border border-slate-700 rounded-md text-center'>
+                <td className='border border-slate-700 rounded-md text-center text-balance'>
                   {contact.firstName} {contact.lastName}
                 </td>
                 <td className='border border-slate-700 rounded-md text-center max-md:hidden'>
@@ -102,23 +83,24 @@ const Home = () => {
                 <td className='border border-slate-700 rounded-md text-center'>
                   {contact.email}
                 </td>
-                <td className='border border-slate-700 rounded-md text-center'>
+                <td className='border border-slate-700 rounded-md text-left'>
                   <Link to={`/contacts/details/${contact._id}`}>
-                    <BsInfoCircle className='text-2xl text-green-800'>
+                    <BsInfoCircle className='text-2xl text-green-800 relative'>
                     </BsInfoCircle>
                   </Link>
                   <Link to={`/contacts/edit/${contact._id}`}>
-                    <AiOutlineEdit className='text-2xl text-green-800'>
+                    <AiOutlineEdit className='text-2xl text-green-800 relative'>
                     </AiOutlineEdit>
                   </Link>
-                  <Link to={`/contacts/delete/${contact._id}`}>
-                    <MdOutlineDelete className='text-2xl text-green-800'>
-                    </MdOutlineDelete>
-                  </Link>
                   <button onClick={() => handleDownload(contact)}>
-                    <AiOutlineDownload className='text-2xl text-green-800 flex-start'>
+                    <AiOutlineDownload className='text-2xl text-green-800 relative'>
                     </AiOutlineDownload>
                   </button>
+                  <Link to={`/contacts/delete/${contact._id}`}>
+                    <MdOutlineDelete className='text-2xl text-green-800 relative'>
+                    </MdOutlineDelete>
+                  </Link>
+
                 </td>
               </tr>
             ))}

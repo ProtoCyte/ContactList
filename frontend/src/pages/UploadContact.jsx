@@ -4,10 +4,10 @@ import Spinner from '../components/Spinner';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import vCard from 'vcf';
+import Constants from '../components/Constants'
 
 const UploadContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts';
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts';
+  const deployedurl = Constants.urltouse
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const UploadContact = () => {
   const handleUploadedContacts = (contacts) => {
     setLoading(true);
 
-    const uploadPromises = contacts.map(contact => axios.post(urltouse, contact));
+    const uploadPromises = contacts.map(contact => axios.post(deployedurl, contact));
 
     Promise.all(uploadPromises)
       .then(() => {

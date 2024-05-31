@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
+import Constants from '../components/Constants'
 
 const ShowContact = () => {
-  // const urltouse = 'http://localhost:5555/contacts'
-  const urltouse = 'https://contactlist-1-orkk.onrender.com/contacts'
+  const deployedurl = Constants.urltouse
   const [contact, setContacts] = useState({});
   const [loading, setLoading] = useState(false);
   const {id} = useParams();
@@ -14,7 +14,7 @@ const ShowContact = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(urltouse + '/' + `${id}`)
+      .get(deployedurl + '/' + `${id}`)
       .then((response) => {
         setContacts(response.data);
         setLoading(false);
